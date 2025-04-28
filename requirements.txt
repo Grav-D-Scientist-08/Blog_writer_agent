@@ -1,0 +1,10 @@
+phidata
+groq 
+flask
+python-dotenv
+duckduckgo-search
+sqlalchemy
+bcrypt
+auth
+requests
+mysql-connector-python

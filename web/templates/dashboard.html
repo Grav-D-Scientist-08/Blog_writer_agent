@@ -1,0 +1,46 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ name }}!</h1>
+    <p>Your interest: {{ interest }}</p>
+
+    <!-- Search Bar -->
+    <h2>Search or select a topic</h2>
+    <form action="{{ url_for('dashboard') }}" method="POST">
+        <input type="text" name="topic" placeholder="Type a topic" value="{{ selected_topic }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Trending Topics -->
+    <h3>Trending Topics</h3>
+    <ul>
+        {% for topic in trending_topics %}
+            <li>
+                <a href="{{ url_for('dashboard', topic=topic) }}">{{ topic }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% if selected_topic %}
+        <h4>You selected the topic: "{{ selected_topic }}"</h4>
+    {% endif %}
+
+    {% if blog_content %}
+        <h4>Generated Blog:</h4>
+        <p>{{ blog_content }}</p>
+    {% endif %}
+
+    {% if validation_msg %}
+        <h4>Validation: {{ validation_msg }}</h4>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
